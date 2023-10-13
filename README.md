@@ -1,56 +1,94 @@
 # TDA ABB
 
-## Repositorio de (Nombre Apellido) - (Padrón) - (Mail)
+## Repositorio de marianela fernanda gareca janko - 109606 - fernanda.gareca321@gmail.com
 
 - Para compilar:
 
 ```bash
-línea de compilación
+make pruebas_chanutron
 ```
 
 - Para ejecutar:
 
 ```bash
-línea de ejecución
+./pruebas_chanutron
 ```
 
 - Para ejecutar con valgrind:
 ```bash
-línea con valgrind
+make valgrind-chanutron
 ```
 ---
 ##  Funcionamiento
 
-Explicación de cómo funcionan las estructuras desarrolladas en el TP y el funcionamiento general del mismo.
+El tda abb consiste en una estructura con nodos partiendo de un nodo raíz, donde cada nodo puede tener hasta dos nodos hijos, pero solo un nodo padre, los cuales respetan un orden donde los elementos menores se encuentran en el subárbol izquierdo y los elementos mayores se encuentran en el subárbol derecho buscando optimizar la operación de búsqueda.
 
-Aclarar en esta parte todas las decisiones que se tomaron al realizar el TP, cosas que no se aclaren en el enunciado, fragmentos de código que necesiten explicación extra, etc.
 
-Incluír **EN TODOS LOS TPS** los diagramas relevantes al problema (mayormente diagramas de memoria para explicar las estructuras, pero se pueden utilizar otros diagramas si es necesario).
+##  Interaccion con la memoria
 
-### Por ejemplo:
 
-El programa funciona abriendo el archivo pasado como parámetro y leyendolo línea por línea. Por cada línea crea un registro e intenta agregarlo al vector. La función de lectura intenta leer todo el archivo o hasta encontrar el primer error. Devuelve un vector con todos los registros creados.
 
-<div align="center">
-<img width="70%" src="img/diagrama1.svg">
-</div>
+### diagrama de memoria:
 
-En el archivo `sarasa.c` la función `funcion1` utiliza `realloc` para agrandar la zona de memoria utilizada para conquistar el mundo. El resultado de `realloc` lo guardo en una variable auxiliar para no perder el puntero original en caso de error:
+En el archivo `abb.c` la función `abb_crear` utiliza `malloc` para inicializar un puntero a una abb en el heap el cual tiene un campo para el comparador recibido como parámetro, un nodo raíz que será inicializada en null también tiene un campo para la cantidad de elementos que se van agregando que en un inicio estara inicialmente en 0.
 
 ```c
-int *vector = realloc(vector_original, (n+1)*sizeof(int));
+    // EN LA FUNCION ABB CRAR
 
-if(vector == NULL)
-    return -1;
-vector_original = vector;
+if (comparador == NULL) {
+		return NULL;
+	}
+	abb_t *abb = malloc(sizeof(abb_t));
+	if (!abb) {
+		return NULL;
+	}
+	abb->comparador = comparador;
+	abb->nodo_raiz= NULL;
+	abb->tamanio=0;
+	return abb;
+```
+En la función `crear nodo` se utiliza `malloc` para inicializar un puntero a un nodo en el heap el cual tiene un puntero a su nodo izquierdo y derecho que seran inicilizados en null, también cuneta con un campo para el elemento que se recibe como parámetro.
+
+```c
+
+    // EN LA FUNCION CREAR NODO
+
+    nodo_abb_t *nuevo_nodo = malloc(sizeof(nodo_abb_t));
+	if(!nuevo_nodo){
+		return NULL;
+	}
+	nuevo_nodo->elemento = elemento;
+	nuevo_nodo->derecha= NULL;
+	nuevo_nodo->izquierda= NULL;
+	return nuevo_nodo;
 ```
 
 
 <div align="center">
-<img width="70%" src="img/diagrama2.svg">
+<img width="70%" src="img/diagrama.jpeg">
 </div>
 
 ---
 
 ## Respuestas a las preguntas teóricas
-Incluír acá las respuestas a las preguntas del enunciado (si aplica).
+
+
+
+# Arbol n-arios
+<div align="center">
+<img width="70%" src="img/arbol.jpeg">
+</div>
+
+
+#  Arbol binario
+
+<div align="center">
+<img width="70%" src="img/binario.jpeg">
+</div>
+
+
+#  Arbol binario de busqueda
+
+<div align="center">
+<img width="70%" src="img/binario de busqueda.jpeg">
+</div>
