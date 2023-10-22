@@ -91,13 +91,16 @@ En la función `crear nodo` se utiliza `malloc` para inicializar un puntero a un
 <img width="70%" src="img/binario de busqueda.jpeg">
 </div>
 
-	EN el caso que el arbol este perfectamente balanceado para las operaciones de buscar insertar o eliminar  decimos que la complejidad es O(logn) ya que segun el Teorema Maestro
-	la ecuacion de recurrencia seria de la forma T(N) = T(n/2) + F(1)
+	En el caso que el arbol este perfectamente balanceado para las operaciones de buscar insertar o eliminar  decimos que la complejidad es O(logn) ya que segun el Teorema Maestro
+	la ecuacion de recurrencia seria de la forma T(N) = T(n/2) + O(1)
 
 	se puede utilizar el teorema ya que A >= 1,B>1 y f(1) es polinomica
-	buscando c = log_2(1) = 0
+
+	buscando c = n^log_2(1) = n⁰ =1
 	
-	n⁰ ---> 1 == F(1) por lo que la complejidad es: log(n)*n⁰ == O(log(n))
+	comparamos c con f(n)
+
+	 1 == O(1) por lo que la complejidad es: log(n)*1 == O(log(n))
 
 
 
